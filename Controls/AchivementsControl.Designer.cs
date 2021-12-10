@@ -35,18 +35,18 @@ namespace TestProject.Controls
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.добавитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.обновитьТаблицуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.checkBox2 = new System.Windows.Forms.CheckBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.endDateFilter = new System.Windows.Forms.DateTimePicker();
+            this.dataSelect = new System.Windows.Forms.CheckBox();
             this.pupilFilter = new System.Windows.Forms.CheckBox();
             this.PupilsList = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.PlacesList = new System.Windows.Forms.ComboBox();
             this.LevelsList = new System.Windows.Forms.ComboBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.beginDateFilter = new System.Windows.Forms.DateTimePicker();
             this.CancelSearchButton = new System.Windows.Forms.Button();
-            this.SearchButton = new System.Windows.Forms.Button();
-            this.обновитьТаблицуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tableAchivements)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
@@ -58,6 +58,8 @@ namespace TestProject.Controls
             // 
             // tableAchivements
             // 
+            this.tableAchivements.AllowUserToAddRows = false;
+            this.tableAchivements.AllowUserToDeleteRows = false;
             this.tableAchivements.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.tableAchivements.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             this.tableAchivements.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -65,6 +67,7 @@ namespace TestProject.Controls
             this.tableAchivements.Location = new System.Drawing.Point(0, 24);
             this.tableAchivements.MultiSelect = false;
             this.tableAchivements.Name = "tableAchivements";
+            this.tableAchivements.ReadOnly = true;
             dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.tableAchivements.RowsDefaultCellStyle = dataGridViewCellStyle4;
             this.tableAchivements.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -114,19 +117,27 @@ namespace TestProject.Controls
             this.удалитьToolStripMenuItem.Name = "удалитьToolStripMenuItem";
             this.удалитьToolStripMenuItem.Size = new System.Drawing.Size(63, 20);
             this.удалитьToolStripMenuItem.Text = "Удалить";
+            this.удалитьToolStripMenuItem.Click += new System.EventHandler(this.удалитьToolStripMenuItem_Click);
+            // 
+            // обновитьТаблицуToolStripMenuItem
+            // 
+            this.обновитьТаблицуToolStripMenuItem.Name = "обновитьТаблицуToolStripMenuItem";
+            this.обновитьТаблицуToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
+            this.обновитьТаблицуToolStripMenuItem.Text = "Обновить таблицу";
+            this.обновитьТаблицуToolStripMenuItem.Click += new System.EventHandler(this.обновитьТаблицуToolStripMenuItem_Click);
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.checkBox2);
+            this.groupBox1.Controls.Add(this.label2);
+            this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.endDateFilter);
+            this.groupBox1.Controls.Add(this.dataSelect);
             this.groupBox1.Controls.Add(this.pupilFilter);
             this.groupBox1.Controls.Add(this.PupilsList);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.PlacesList);
             this.groupBox1.Controls.Add(this.LevelsList);
-            this.groupBox1.Controls.Add(this.dateTimePicker1);
+            this.groupBox1.Controls.Add(this.beginDateFilter);
             this.groupBox1.Controls.Add(this.CancelSearchButton);
-            this.groupBox1.Controls.Add(this.SearchButton);
             this.groupBox1.Location = new System.Drawing.Point(3, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(1240, 123);
@@ -134,15 +145,45 @@ namespace TestProject.Controls
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Фильтрация";
             // 
-            // checkBox2
+            // label2
             // 
-            this.checkBox2.AutoSize = true;
-            this.checkBox2.Location = new System.Drawing.Point(10, 72);
-            this.checkBox2.Name = "checkBox2";
-            this.checkBox2.Size = new System.Drawing.Size(172, 23);
-            this.checkBox2.TabIndex = 10;
-            this.checkBox2.Text = "Дата мероприятия";
-            this.checkBox2.UseVisualStyleBackColor = true;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(358, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(27, 19);
+            this.label2.TabIndex = 13;
+            this.label2.Text = "по";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(191, 73);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(18, 19);
+            this.label1.TabIndex = 12;
+            this.label1.Text = "с";
+            // 
+            // endDateFilter
+            // 
+            this.endDateFilter.Enabled = false;
+            this.endDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.endDateFilter.Location = new System.Drawing.Point(391, 70);
+            this.endDateFilter.Name = "endDateFilter";
+            this.endDateFilter.Size = new System.Drawing.Size(146, 26);
+            this.endDateFilter.TabIndex = 11;
+            this.endDateFilter.Value = new System.DateTime(2021, 12, 10, 0, 0, 0, 0);
+            this.endDateFilter.ValueChanged += new System.EventHandler(this.endDateFilter_ValueChanged);
+            // 
+            // dataSelect
+            // 
+            this.dataSelect.AutoSize = true;
+            this.dataSelect.Location = new System.Drawing.Point(10, 72);
+            this.dataSelect.Name = "dataSelect";
+            this.dataSelect.Size = new System.Drawing.Size(172, 23);
+            this.dataSelect.TabIndex = 10;
+            this.dataSelect.Text = "Дата мероприятий";
+            this.dataSelect.UseVisualStyleBackColor = true;
+            this.dataSelect.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // pupilFilter
             // 
@@ -153,88 +194,60 @@ namespace TestProject.Controls
             this.pupilFilter.TabIndex = 9;
             this.pupilFilter.Text = "Участник (учащийся)";
             this.pupilFilter.UseVisualStyleBackColor = true;
+            this.pupilFilter.CheckedChanged += new System.EventHandler(this.pupilFilter_CheckedChanged);
             // 
             // PupilsList
             // 
             this.PupilsList.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.PupilsList.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.PupilsList.BackColor = System.Drawing.SystemColors.Window;
+            this.PupilsList.Enabled = false;
             this.PupilsList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.PupilsList.FormattingEnabled = true;
             this.PupilsList.Location = new System.Drawing.Point(215, 27);
             this.PupilsList.Name = "PupilsList";
-            this.PupilsList.Size = new System.Drawing.Size(250, 27);
+            this.PupilsList.Size = new System.Drawing.Size(322, 27);
             this.PupilsList.TabIndex = 8;
             this.PupilsList.SelectedIndexChanged += new System.EventHandler(this.PupilsList_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(518, 73);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(153, 19);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "Занимаемое место";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(518, 30);
+            this.label3.Location = new System.Drawing.Point(608, 30);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(162, 19);
             this.label3.TabIndex = 6;
             this.label3.Text = "Уровень олимпиады";
             // 
-            // PlacesList
-            // 
-            this.PlacesList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PlacesList.FormattingEnabled = true;
-            this.PlacesList.Location = new System.Drawing.Point(686, 70);
-            this.PlacesList.Name = "PlacesList";
-            this.PlacesList.Size = new System.Drawing.Size(219, 27);
-            this.PlacesList.TabIndex = 4;
-            // 
             // LevelsList
             // 
             this.LevelsList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.LevelsList.FormattingEnabled = true;
-            this.LevelsList.Location = new System.Drawing.Point(686, 27);
+            this.LevelsList.Location = new System.Drawing.Point(785, 27);
             this.LevelsList.Name = "LevelsList";
             this.LevelsList.Size = new System.Drawing.Size(219, 27);
             this.LevelsList.TabIndex = 3;
             // 
-            // dateTimePicker1
+            // beginDateFilter
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(215, 70);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(250, 26);
-            this.dateTimePicker1.TabIndex = 2;
-            this.dateTimePicker1.Value = new System.DateTime(2021, 12, 8, 14, 57, 22, 0);
+            this.beginDateFilter.Enabled = false;
+            this.beginDateFilter.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.beginDateFilter.Location = new System.Drawing.Point(215, 70);
+            this.beginDateFilter.Name = "beginDateFilter";
+            this.beginDateFilter.Size = new System.Drawing.Size(137, 26);
+            this.beginDateFilter.TabIndex = 2;
+            this.beginDateFilter.Value = new System.DateTime(2021, 12, 8, 14, 57, 22, 0);
+            this.beginDateFilter.ValueChanged += new System.EventHandler(this.beginDateFilter_ValueChanged);
             // 
             // CancelSearchButton
             // 
-            this.CancelSearchButton.Location = new System.Drawing.Point(1033, 66);
+            this.CancelSearchButton.Location = new System.Drawing.Point(1039, 20);
             this.CancelSearchButton.Name = "CancelSearchButton";
             this.CancelSearchButton.Size = new System.Drawing.Size(195, 38);
             this.CancelSearchButton.TabIndex = 1;
-            this.CancelSearchButton.Text = "CancelSearchButton";
+            this.CancelSearchButton.Text = "Вывод в Excel";
             this.CancelSearchButton.UseVisualStyleBackColor = true;
-            // 
-            // SearchButton
-            // 
-            this.SearchButton.Location = new System.Drawing.Point(1033, 15);
-            this.SearchButton.Name = "SearchButton";
-            this.SearchButton.Size = new System.Drawing.Size(195, 38);
-            this.SearchButton.TabIndex = 0;
-            this.SearchButton.Text = "SearchButton";
-            this.SearchButton.UseVisualStyleBackColor = true;
-            // 
-            // обновитьТаблицуToolStripMenuItem
-            // 
-            this.обновитьТаблицуToolStripMenuItem.Name = "обновитьТаблицуToolStripMenuItem";
-            this.обновитьТаблицуToolStripMenuItem.Size = new System.Drawing.Size(121, 20);
-            this.обновитьТаблицуToolStripMenuItem.Text = "Обновить таблицу";
-            this.обновитьТаблицуToolStripMenuItem.Click += new System.EventHandler(this.обновитьТаблицуToolStripMenuItem_Click);
+            this.CancelSearchButton.Click += new System.EventHandler(this.CancelSearchButton_Click);
             // 
             // AchivementsControl
             // 
@@ -245,6 +258,7 @@ namespace TestProject.Controls
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "AchivementsControl";
             this.Size = new System.Drawing.Size(1246, 552);
+            this.VisibleChanged += new System.EventHandler(this.AchivementsControl_VisibleChanged);
             ((System.ComponentModel.ISupportInitialize)(this.tableAchivements)).EndInit();
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel1.PerformLayout();
@@ -264,19 +278,19 @@ namespace TestProject.Controls
         private System.Windows.Forms.DataGridView tableAchivements;
         private System.Windows.Forms.SplitContainer splitContainer1;
         private System.Windows.Forms.Button CancelSearchButton;
-        private System.Windows.Forms.Button SearchButton;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox PlacesList;
         private System.Windows.Forms.ComboBox LevelsList;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.DateTimePicker beginDateFilter;
         private System.Windows.Forms.ComboBox PupilsList;
-        private System.Windows.Forms.CheckBox checkBox2;
+        private System.Windows.Forms.CheckBox dataSelect;
         private System.Windows.Forms.CheckBox pupilFilter;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem добавитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem обновитьТаблицуToolStripMenuItem;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DateTimePicker endDateFilter;
     }
 }

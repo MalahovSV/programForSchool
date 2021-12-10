@@ -51,11 +51,21 @@ and id_teacher = {_userID}");
 
         private void insertExecute()
         {
-            try
+            MessageBox.Show($@"
+insert into achievements values (null,
+'{dateAchivement.Value.Date.ToShortDateString()}',
+'{placeText.Text}',
+'{eventText.Text}',
+'{levelText.Text}',
+'{typeEventText.Text}',
+{PupilsList.SelectedValue},
+'{AddressText.Text}' )");
+           try
             {
                 DBUtils.ExecuteNonQuery($@"
-insert into achievements values (
-'{dateAchivement.Value}',
+insert into achievements 
+values (null,
+'{dateAchivement.Value.Date.ToShortDateString()}',
 '{placeText.Text}',
 '{eventText.Text}',
 '{levelText.Text}',

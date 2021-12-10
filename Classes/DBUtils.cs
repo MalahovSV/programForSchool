@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -28,10 +29,10 @@ namespace TestProject
         static public DataSet ConnectToDB(string command)
         {
             DataSet ds = new DataSet();
-            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
                 connection.Open();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command, connection);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, connection);
                 dataAdapter.Fill(ds);
                 return ds;
             }
@@ -44,10 +45,10 @@ namespace TestProject
         static public DataTable LoadList(string command)
         {
             DataTable ds = new DataTable();
-            using (SqlConnection connection = new SqlConnection(GetConnectionString()))
+            using (MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
                 connection.Open();
-                SqlDataAdapter dataAdapter = new SqlDataAdapter(command, connection);
+                MySqlDataAdapter dataAdapter = new MySqlDataAdapter(command, connection);
                 dataAdapter.Fill(ds);
                 return ds;
             }
@@ -56,10 +57,10 @@ namespace TestProject
 
         static public void ExecuteNonQuery(string command)
         {
-            using(SqlConnection connection = new SqlConnection(GetConnectionString()))
+            using(MySqlConnection connection = new MySqlConnection(GetConnectionString()))
             {
                 connection.Open();
-                SqlCommand commander = new SqlCommand();
+                MySqlCommand commander = new MySqlCommand();
                 commander.CommandText = command;
                 commander.Connection = connection;
                 commander.ExecuteNonQuery();

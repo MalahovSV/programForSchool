@@ -13,10 +13,13 @@ namespace TestProject
     public partial class MainWindow : Form
     {
         private string _userID;
-        public MainWindow(string ID_user)
+        private AuthorizationWindow _authorizationWindow;
+        public MainWindow(string ID_user, AuthorizationWindow aw)
         {
             InitializeComponent();
             _userID = ID_user;
+            _authorizationWindow = aw;
+            aw.Hide();
             loadControls();
 
             
@@ -44,6 +47,26 @@ namespace TestProject
                 splitContainer1.Panel2.Controls.Clear();
             splitContainer1.Panel2.Controls.Add(_controls[1]);
             _controls[1].Dock = DockStyle.Fill;
+        }
+
+        private void MainWindow_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            var result = MessageBox.Show("Вернуться к авторизации?\n", "Завершение работы", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            if (result == DialogResult.No)
+            {
+                _authorizationWindow.Close();
+            }
+            else if (result == DialogResult.Yes)
+            {
+                _authorizationWindow.Show();
+            }
+            else
+                e.Cancel = true;
+        }
+
+        private void MainWindow_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
         }
     }
 }

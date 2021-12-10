@@ -25,17 +25,18 @@ namespace TestProject
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            DataSet ds = DBUtils.ConnectToDB($"select * from users where login_user = '{loginBox.Text}' and password_user = '{passwordBox.Text}'");
+            DataSet ds = DBUtils.ConnectToDB($@"select id_teacher from users, class_teacher
+where id_user = fk_user and login_user = '{loginBox.Text}' and password_user = '{passwordBox.Text}'");
             if (ds.Tables[0].Rows.Count>0)
             {
-                MainWindow mw = new MainWindow(ds.Tables[0].Rows[0].ItemArray[0].ToString());
+                MainWindow mw = new MainWindow(ds.Tables[0].Rows[0].ItemArray[0].ToString(), this);
                 mw.Show();
             }
             else
             {
                 MessageBox.Show("Логин или пароль не верны", "Ошибка авторизации", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            
         }
     }
 }
