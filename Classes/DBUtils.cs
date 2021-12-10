@@ -36,7 +36,11 @@ namespace TestProject
                 return ds;
             }
         }
-
+        /// <summary>
+        /// Для заполнения combobox
+        /// </summary>
+        /// <param name="command">Выборка SQL</param>
+        /// <returns>Результат выборки</returns>
         static public DataTable LoadList(string command)
         {
             DataTable ds = new DataTable();
@@ -46,6 +50,19 @@ namespace TestProject
                 SqlDataAdapter dataAdapter = new SqlDataAdapter(command, connection);
                 dataAdapter.Fill(ds);
                 return ds;
+            }
+        }
+
+
+        static public void ExecuteNonQuery(string command)
+        {
+            using(SqlConnection connection = new SqlConnection(GetConnectionString()))
+            {
+                connection.Open();
+                SqlCommand commander = new SqlCommand();
+                commander.CommandText = command;
+                commander.Connection = connection;
+                commander.ExecuteNonQuery();
             }
         }
     }

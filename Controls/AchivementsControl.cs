@@ -76,5 +76,16 @@ where pupil.id_pupil = achievements.fk_pupil
                 tableAchivements.DataSource = ds.Tables[0];
             }
         }
+
+        private void добавитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            AddNewAchivement newAchivement = new AddNewAchivement(_UserId);
+            newAchivement.ShowDialog();
+        }
+
+        private void обновитьТаблицуToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            loadDataTable();
+        }
     }
 }
